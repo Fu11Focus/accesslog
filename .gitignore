@@ -1,3 +1,29 @@
-./**/.env
-./api/docker/*
-./app/docker/*
+# Environment
+**/.env
+
+# Docker volumes
+**/docker/
+
+# Dependencies
+**/node_modules/
+
+# Build
+**/dist/
+**/build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test coverage
+**/coverage/

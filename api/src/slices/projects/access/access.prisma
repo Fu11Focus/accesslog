@@ -1,0 +1,87 @@
+model Access {
+    id        String @id @default(uuid())
+    projectId String
+
+    serviceName String
+    serviceUrl  String
+    environment Environment
+    accessLevel AccessLevel
+
+    login             String
+    passwordEncrypted String
+
+    notes String?
+    owner String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    project      Project       @relation(fields: [projectId], references: [id])
+    twoFactor    TwoFactor?
+    activityLogs ActivityLog[]
+}
+
+enum Environment {
+    PRODUCTION
+    STAGING
+    DEVELOPMENT
+}
+
+enum AccessLevel {
+    ADMIN
+    EDITOR
+    VIEWER
+}
+
+model TwoFactor {
+    id       String @id @default(uuid())
+    accessId String @unique
+
+    type    TwoFactorType
+    enabled Boolean       @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    access        Access         @relation(fields: [accessId], references: [id])
+    recoveryCodes RecoveryCode[]
+}
+
+enum TwoFactorType {
+    APP
+    SMS
+    HARDWARE
+}
+
+model RecoveryCode {
+    id          String @id @default(uuid())
+    twoFactorId String
+
+    codeEncrypted String
+    used          Boolean   @default(false)
+    usedAt        DateTime?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    twoFactor TwoFactor @relation(fields: [twoFactorId], references: [id])
+}
+
+model ActivityLog {
+    id       String @id @default(uuid())
+    accessId String
+
+    action ActivityAction
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    access Access @relation(fields: [accessId], references: [id])
+}
+
+enum ActivityAction {
+    ACCESS_CREATED
+    ACCESS_UPDATED
+    PASSWORD_CHANGED
+    RECOVERY_CODE_USED
+}
