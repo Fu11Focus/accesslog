@@ -19,11 +19,19 @@ export class EncryptionService {
         );
     }
 
-    encrypt(plaintext: string, key: string) {
-        return crypto.createCipheriv("aes-256-cbc", key, crypto.randomBytes(16)).update(plaintext, "utf8", "hex");
+    encrypt(plaintext: string, key: string): string {
+        const keyBuffer = Buffer.from(key, 'base64');  // base64 → 32 bytes
+        const iv = crypto.randomBytes(16);
+        const cipher = crypto.createCipheriv('aes-256-cbc', keyBuffer, iv);
+        const encrypted = cipher.update(plaintext, 'utf8', 'hex') + cipher.final('hex');
+        return iv.toString('hex') + ':' + encrypted;
     }
 
-    decrypt(ciphertext: string, key: string) {
-        return crypto.createDecipheriv("aes-256-cbc", key, crypto.randomBytes(16)).update(ciphertext, "hex", "utf8");
+    decrypt(ciphertext: string, key: string): string {
+        const keyBuffer = Buffer.from(key, 'base64');  // base64 → 32 bytes
+        const [ivHex, encrypted] = ciphertext.split(':');
+        const iv = Buffer.from(ivHex, 'hex');
+        const decipher = crypto.createDecipheriv('aes-256-cbc', keyBuffer, iv);
+        return decipher.update(encrypted, 'hex', 'utf8') + decipher.final('utf8');
     }
 }

@@ -40,6 +40,8 @@ export class AuthGuard implements CanActivate {
                 secret: process.env.JWT_SECRET,
             });
 
+            payload.id = payload.sub;
+
             request['user'] = payload;
         } catch (error) {
             throw new UnauthorizedException('Invalid or expired token');

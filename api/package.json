@@ -24,8 +24,13 @@
     "predev": "npm run db:up && npm run db:wait && prisma-import --force && prisma db push && prisma generate",
     "dev": "cross-env NODE_ENV=dev nest start --watch",
     "prisma:generate": "prisma-import --force && prisma generate",
-    "prisma:migrate": "npm run db:up && npm run db:wait && prisma-import --force && prisma migrate dev",
-    "prisma:push": "npm run db:up && npm run db:wait && prisma-import --force && prisma db push"
+    "prisma:push": "npm run db:up && npm run db:wait && prisma-import --force && prisma db push",
+    "migrate": "prisma migrate deploy",
+    "migrate:dev": "npm run db:up && npm run db:wait && prisma-import --force && prisma migrate dev",
+    "migrate:dev:create": "npm run db:up && npm run db:wait && prisma-import --force && prisma migrate dev --create-only",
+    "migrate:reset": "npm run db:up && npm run db:wait && prisma-import --force && prisma migrate reset",
+    "migrate:deploy": "prisma-import --force && prisma migrate deploy",
+    "migrate:status": "prisma-import --force && prisma migrate status"
   },
   "dependencies": {
     "@nestjs/cache-manager": "^3.1.0",
@@ -40,6 +45,8 @@
     "bcrypt": "^6.0.0",
     "cache-manager": "^7.2.8",
     "cache-manager-redis-store": "^3.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
     "cookie-parser": "^1.4.7",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",

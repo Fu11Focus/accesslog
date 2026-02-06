@@ -2,8 +2,8 @@ model Access {
     id        String @id @default(uuid())
     projectId String
 
-    serviceName String
-    serviceUrl  String
+    serviceName String?
+    serviceUrl  String?
     environment Environment
     accessLevel AccessLevel
 
@@ -70,6 +70,7 @@ model RecoveryCode {
 model ActivityLog {
     id       String @id @default(uuid())
     accessId String
+    userId   String
 
     action ActivityAction
 
@@ -77,11 +78,16 @@ model ActivityLog {
     updatedAt DateTime @updatedAt
 
     access Access @relation(fields: [accessId], references: [id])
+    user   User   @relation(fields: [userId], references: [id])
 }
 
 enum ActivityAction {
     ACCESS_CREATED
     ACCESS_UPDATED
+    ACCESS_VIEWED
+    ACCESS_COPIED
+    ACCESS_DELETED
     PASSWORD_CHANGED
     RECOVERY_CODE_USED
+    RECOVERY_CODE_VIEWED
 }
