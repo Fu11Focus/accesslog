@@ -3,7 +3,6 @@ import { AccessEnvironment, AccessLevel } from ".";
 
 export interface IUpdateAccess {
     id: string;
-    projectId: string;
     serviceName?: string;
     serviceUrl?: string;
     environment: AccessEnvironment;

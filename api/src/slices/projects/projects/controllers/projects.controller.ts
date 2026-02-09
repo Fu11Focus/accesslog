@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ProjectsService } from "../data/services/projects.service";
+import { ProjectsService } from "../domain/services/projects.service";
 import { ApiBearerAuth, ApiBody, ApiTags } from "@nestjs/swagger";
 import { ApiOperation } from "@nestjs/swagger";
 import { CreateProjectDto, UpdateProjectDto } from "../dtos";
@@ -32,8 +32,8 @@ export class ProjectsController {
         description: 'Update a project',
         operationId: 'updateProject'
     })
-    async updateProject(@Body() project: UpdateProjectDto, @User() user): Promise<IProject> {
-        return this.service.updateProject(project, user.id);
+    async updateProject(@Param('id') id: string, @Body() project: UpdateProjectDto, @User() user): Promise<IProject> {
+        return this.service.updateProject(id, project, user.id);
     }
 
 

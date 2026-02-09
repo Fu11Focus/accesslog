@@ -1,5 +1,8 @@
-import { ICreateProject } from "./createProject.interface";
+import { ProjectStatus } from "#projects/projects/domain/interfaces";
 
-export interface IUpdateProject extends ICreateProject {
-    id: string;
+export interface IUpdateProject {
+    name?: string;
+    clientName?: string;
+    status?: ProjectStatus;
+    description?: string;
 }

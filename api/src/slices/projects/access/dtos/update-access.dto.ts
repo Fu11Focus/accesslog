@@ -10,24 +10,21 @@ export class UpdateAccessDto {
 
     @ApiProperty()
     @IsString()
-    projectId: string;
-
-    @ApiProperty()
     @IsOptional()
     serviceName?: string;
 
     @ApiProperty()
     @IsOptional()
+    @IsString()
     serviceUrl?: string;
 
     @ApiProperty()
     @IsEnum(AccessEnvironment)
-    environment?: AccessEnvironment;
+    environment: AccessEnvironment;
 
     @ApiProperty()
     @IsEnum(AccessLevel)
-    @IsOptional()
-    accessLevel?: AccessLevel;
+    accessLevel: AccessLevel;
 
     @ApiProperty()
     @IsString()
@@ -39,9 +36,11 @@ export class UpdateAccessDto {
 
     @ApiProperty()
     @IsOptional()
+    @IsString()
     notes?: string;
 
     @ApiProperty()
     @IsOptional()
+    @IsString()
     owner?: string;
 }

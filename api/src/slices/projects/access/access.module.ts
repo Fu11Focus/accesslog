@@ -1,15 +1,20 @@
 import { Module } from "@nestjs/common";
-import { AccessService } from "./data/access.service";
-import { AccessMapper } from "./data/access.mapper";
+import { PrismaModule } from "#prisma/prisma.module";
+import { ActivityLogModule } from "#activityLog/activityLog.module";
+import { AccessService } from "./domain/services/access.service";
+import { IAccessGateway } from "./domain/gateways/access.gateway";
+import { AccessGateway } from "./data/gateways/access.gateway";
 import { AccessController } from "./controllers/access.controller";
 import { EncryptionService } from "#shared/domain/services/encryption.service";
-import { PrismaModule } from "#prisma/prisma.module";
 
 @Module({
-    imports: [PrismaModule],
-    providers: [AccessService, AccessMapper, EncryptionService],
+    imports: [PrismaModule, ActivityLogModule],
+    providers: [
+        { provide: IAccessGateway, useClass: AccessGateway },
+        AccessService,
+        EncryptionService,
+    ],
     exports: [AccessService],
-    controllers: [AccessController]
+    controllers: [AccessController],
 })
-
 export class AccessModule { }
