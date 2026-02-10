@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     },
 
     modules: ['@nuxtjs/tailwindcss'],
+    css: [currentDir + '/theme/css/fonts.css'],
     tailwindcss: {
         cssPath: currentDir + '/theme/css/tailwind.css',
-    }
+    },
 })

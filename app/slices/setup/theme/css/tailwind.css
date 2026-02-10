@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@source "../../../..";
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -41,12 +41,17 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-oneday: 'OneDay', sans-serif;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card: oklch(0.96 0.00 0);
+  --card-foreground: oklch(0.96 0.00 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
@@ -114,7 +119,8 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-montserrat font-thin tracking-wider;
   }
 }

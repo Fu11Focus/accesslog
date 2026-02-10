@@ -1,3 +1,5 @@
 {
-    "hello": "іеіва"
+    "auth": {
+        "signIn": "Sign In"
+    }
 }

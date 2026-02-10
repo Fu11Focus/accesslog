@@ -3,7 +3,7 @@ import { registerSlices } from './registerSlices';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   extends: ['./slices/api', './slices/setup', './slices/common', ...registerSlices()],
   modules: ['@nuxtjs/i18n', 'shadcn-nuxt'],
   i18n: {
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English' }
     ]
   },
+  css: ['#setup/theme/css/tailwind.css'],
   shadcn: {
     /**
      * Prefix for all the imported component.
