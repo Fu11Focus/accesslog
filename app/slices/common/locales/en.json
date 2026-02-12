@@ -1,5 +1,16 @@
 {
     "auth": {
-        "signIn": "Sign In"
+        "signIn": "Sign In",
+        "email": "Email",
+        "password": "Password",
+        "register": "Register",
+        "logOut": "Log Out",
+        "or": "OR",
+        "login": "Login"
+    },
+    "url": {
+        "terms": "Terms & Conditions",
+        "policy": "Privacy Policy",
+        "contacts": "Contacts"
     }
 }

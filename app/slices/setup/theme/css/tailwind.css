@@ -44,6 +44,12 @@
 @theme {
   --font-montserrat: 'Montserrat', sans-serif;
   --font-oneday: 'OneDay', sans-serif;
+  --color-brand-dark: #37524D;
+  --color-brand-darkest: #213531;
+  --color-brand-light: #336357;
+  --color-brand-lighter: #537B73;
+  --color-brand-text: #DAF7F2;
+  --shadow-inner-brand: inset 0 0 40px rgba(83, 123, 115);
 }
 
 :root {
@@ -121,6 +127,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat font-thin tracking-wider;
+    background-color: #000;
+    background-image: radial-gradient(ellipse at top, #336357 0%, #37524D 5%, transparent 50%);
   }
 }

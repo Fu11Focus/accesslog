@@ -3,7 +3,12 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { AuthDto } from '../models/AuthDto';
+import type { LoginResponseDto } from '../models/LoginResponseDto';
+import type { MeResponseDto } from '../models/MeResponseDto';
+import type { MessageResponseDto } from '../models/MessageResponseDto';
+import type { RefreshResponseDto } from '../models/RefreshResponseDto';
 import type { RefreshTokenDto } from '../models/RefreshTokenDto';
+import type { UserDto } from '../models/UserDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -11,12 +16,12 @@ export class AuthService {
     /**
      * Login user
      * @param requestBody
-     * @returns any
+     * @returns LoginResponseDto
      * @throws ApiError
      */
     public static login(
         requestBody: AuthDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<LoginResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/auth/login',
@@ -27,12 +32,12 @@ export class AuthService {
     /**
      * Register user
      * @param requestBody
-     * @returns any
+     * @returns UserDto
      * @throws ApiError
      */
     public static register(
         requestBody: AuthDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/auth/register',
@@ -43,12 +48,12 @@ export class AuthService {
     /**
      * Refresh access token
      * @param requestBody
-     * @returns any
+     * @returns RefreshResponseDto
      * @throws ApiError
      */
     public static refresh(
         requestBody: RefreshTokenDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<RefreshResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/auth/refresh',
@@ -58,10 +63,10 @@ export class AuthService {
     }
     /**
      * Logout and revoke refresh token
-     * @returns any
+     * @returns MessageResponseDto
      * @throws ApiError
      */
-    public static authControllerLogout(): CancelablePromise<any> {
+    public static authControllerLogout(): CancelablePromise<MessageResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/auth/logout',
@@ -69,10 +74,10 @@ export class AuthService {
     }
     /**
      * Logout from all devices
-     * @returns any
+     * @returns MessageResponseDto
      * @throws ApiError
      */
-    public static authControllerLogoutAll(): CancelablePromise<any> {
+    public static authControllerLogoutAll(): CancelablePromise<MessageResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/auth/logout-all',
@@ -80,10 +85,10 @@ export class AuthService {
     }
     /**
      * Get current user
-     * @returns any
+     * @returns MeResponseDto
      * @throws ApiError
      */
-    public static authControllerMe(): CancelablePromise<any> {
+    public static authControllerMe(): CancelablePromise<MeResponseDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/auth/me',

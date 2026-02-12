@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import 'vue-sonner/style.css'
+import { Toaster } from '#setup/theme/components/ui/sonner'
 </script>
 
 <template>
@@ -6,12 +8,14 @@
         <div class="accesslog-text fixed top-40 text-9xl font-bold uppercase">
             AccessLog
         </div>
-        <main class="max-w-[1440px] mx-auto h-[calc(100vh-12rem)] p-5">
+        <main class="max-w-360 mx-auto h-screen p-5">
             <div class="flex items-center justify-center h-full">
                 <slot />
             </div>
         </main>
-        <Footer />
+        <Toaster 
+        position="top-center"
+        />
     </div>
 </template>
 

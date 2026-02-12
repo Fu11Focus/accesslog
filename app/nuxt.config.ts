@@ -4,8 +4,13 @@ import { registerSlices } from './registerSlices';
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  extends: ['./slices/api', './slices/setup', './slices/common', ...registerSlices()],
-  modules: ['@nuxtjs/i18n', 'shadcn-nuxt'],
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:3333',
+    },
+  },
+  extends: ['./slices/setup', './slices/common', ...registerSlices()],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n', 'shadcn-nuxt', '@vee-validate/nuxt',],
   i18n: {
     defaultLocale: 'en',
     locales: [
