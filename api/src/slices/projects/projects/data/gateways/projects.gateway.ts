@@ -27,11 +27,26 @@ export class ProjectsGateway implements IProjectsGateway {
         return result ? this.mapper.toData(result) : null;
     }
 
-    async findAllByUserId(userId: string): Promise<IProject[]> {
-        const results = await this.prisma.project.findMany({
-            where: { userId },
-        });
-        return results.map((project) => this.mapper.toData(project));
+    async findAllByUserId(userId: string, page: number, limit: number, filters?: { status?: string; sortBy?: string; sortOrder?: 'asc' | 'desc' }): Promise<{ data: IProject[]; total: number }> {
+        const where: any = { userId };
+        if (filters?.status) {
+            where.status = filters.status;
+        }
+
+        const allowedSortFields = ['updatedAt', 'createdAt', 'name'];
+        const sortBy = (filters?.sortBy && allowedSortFields.includes(filters.sortBy)) ? filters.sortBy : 'updatedAt';
+        const sortOrder = filters?.sortOrder || 'desc';
+
+        const [results, total] = await Promise.all([
+            this.prisma.project.findMany({
+                where,
+                skip: (page - 1) * limit,
+                take: limit,
+                orderBy: { [sortBy]: sortOrder },
+            }),
+            this.prisma.project.count({ where }),
+        ]);
+        return { data: results.map((project) => this.mapper.toData(project)), total };
     }
 
     async update(id: string, userId: string, data: IUpdateProject): Promise<IProject> {

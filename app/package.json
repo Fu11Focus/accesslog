@@ -23,7 +23,7 @@
     "nuxt": "^4.3.0",
     "openapi-typescript-codegen": "^0.30.0",
     "pinia": "^3.0.4",
-    "reka-ui": "^2.8.0",
+    "reka-ui": "^2.8.2",
     "shadcn-nuxt": "^2.4.3",
     "tailwind-merge": "^3.4.0",
     "vee-validate": "^4.15.1",

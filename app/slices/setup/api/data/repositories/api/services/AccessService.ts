@@ -43,17 +43,37 @@ export class AccessService {
     /**
      * Get access by project id
      * @param projectId
+     * @param page
+     * @param limit
+     * @param sortBy
+     * @param sortOrder
+     * @param environment
+     * @param accessLevel
      * @returns any
      * @throws ApiError
      */
     public static getAccessByProjectId(
         projectId: string,
+        page: number = 1,
+        limit: number = 10,
+        sortBy?: string,
+        sortOrder?: 'asc' | 'desc',
+        environment?: 'PRODUCTION' | 'STAGING' | 'DEVELOPMENT',
+        accessLevel?: 'ADMIN' | 'EDITOR' | 'VIEWER',
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/access/projects/{projectId}',
             path: {
                 'projectId': projectId,
+            },
+            query: {
+                'page': page,
+                'limit': limit,
+                'sortBy': sortBy,
+                'sortOrder': sortOrder,
+                'environment': environment,
+                'accessLevel': accessLevel,
             },
         });
     }

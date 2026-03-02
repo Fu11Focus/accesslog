@@ -20,7 +20,7 @@ export class RecoveryCodeController {
         operationId: 'createRecoveryCode',
     })
     async createRecoveryCode(@User() user, @Body() data: CreateRecoveryCodeDto) {
-        return this.recoveryCodeService.createRecoveryCode(data, user.encryptionKey);
+        return this.recoveryCodeService.createRecoveryCode(data, user.encryptionKey, user.id);
     }
 
     @Get('two-factor/:twoFactorId')
@@ -29,7 +29,7 @@ export class RecoveryCodeController {
         operationId: 'getRecoveryCodeByTwoFactorId',
     })
     async getRecoveryCodeByTwoFactorId(@Param('twoFactorId') twoFactorId: string, @User() user) {
-        return this.recoveryCodeService.getRecoveryCodesByTwoFactorId(twoFactorId, user.encryptionKey);
+        return this.recoveryCodeService.getRecoveryCodesByTwoFactorId(twoFactorId, user.encryptionKey, user.id);
     }
 
     @Get(':id')
@@ -38,7 +38,7 @@ export class RecoveryCodeController {
         operationId: 'getRecoveryCodeById',
     })
     async getRecoveryCodeById(@Param('id') id: string, @User() user) {
-        return this.recoveryCodeService.getRecoveryCodeById(id, user.encryptionKey);
+        return this.recoveryCodeService.getRecoveryCodeById(id, user.encryptionKey, user.id);
     }
 
     @Patch(':id/use')
@@ -55,7 +55,7 @@ export class RecoveryCodeController {
         description: 'Delete a recovery code',
         operationId: 'deleteRecoveryCode',
     })
-    async deleteRecoveryCode(@Param('id') id: string) {
-        return this.recoveryCodeService.deleteRecoveryCode(id);
+    async deleteRecoveryCode(@Param('id') id: string, @User() user) {
+        return this.recoveryCodeService.deleteRecoveryCode(id, user.id);
     }
 }

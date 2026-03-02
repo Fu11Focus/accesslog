@@ -18,11 +18,11 @@ export class UpdateAccessDto {
     @IsString()
     serviceUrl?: string;
 
-    @ApiProperty()
+    @ApiProperty({ enum: AccessEnvironment, enumName: 'AccessEnvironment' })
     @IsEnum(AccessEnvironment)
     environment: AccessEnvironment;
 
-    @ApiProperty()
+    @ApiProperty({ enum: AccessLevel, enumName: 'AccessLevel' })
     @IsEnum(AccessLevel)
     accessLevel: AccessLevel;
 

@@ -6,11 +6,216 @@
         "register": "Register",
         "logOut": "Log Out",
         "or": "OR",
-        "login": "Login"
+        "login": "Login",
+        "twoFactorTitle": "Two-Factor Authentication",
+        "enterTotpCode": "Enter the 6-digit code from your authenticator app, or a backup code.",
+        "codePlaceholder": "Enter code",
+        "verify": "Verify"
+    },
+    "home": {
+        "welcome": "Welcome back",
+        "overview": "Overview",
+        "totalProjects": "Total Projects",
+        "totalCredentials": "Credentials",
+        "activeEnvironments": "Environments",
+        "recentActivities": "Activities",
+        "recentProjects": "Recent Projects",
+        "viewAll": "View All",
+        "recentActivity": "Recent Activity",
+        "quickActions": "Quick Actions",
+        "addCredential": "Add Credential",
+        "noProjects": "No projects yet",
+        "noActivity": "No recent activity",
+        "credentialsByEnv": "Credentials by Environment",
+        "production": "Production",
+        "staging": "Staging",
+        "development": "Development"
+    },
+    "projects": {
+        "title": "Projects",
+        "create": "New Project",
+        "edit": "Edit Project",
+        "empty": "No projects yet. Create your first project to get started!",
+        "save": "Save",
+        "projectStatus": "Select project status",
+        "status": {
+            "active": "Active",
+            "archived": "Archived"
+        },
+        "createdSuccessfully": "Project created successfully!",
+        "updatedSuccessfully": "Project updated successfully!",
+        "tabs": {
+            "details": "Details",
+            "access": "Access"
+        }
+    },
+    "access": {
+        "title": "Access Credentials",
+        "create": "Add Access",
+        "edit": "Edit Access",
+        "empty": "No credentials yet. Add your first access entry.",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this access?",
+        "createdSuccessfully": "Access created successfully!",
+        "updatedSuccessfully": "Access updated successfully!",
+        "deletedSuccessfully": "Access deleted successfully!",
+        "fields": {
+            "serviceName": "Service Name",
+            "serviceUrl": "Service URL",
+            "environment": "Environment",
+            "accessLevel": "Access Level",
+            "login": "Login",
+            "password": "Password",
+            "notes": "Notes",
+            "owner": "Owner"
+        },
+        "environment": {
+            "production": "Production",
+            "staging": "Staging",
+            "development": "Development"
+        },
+        "level": {
+            "admin": "Admin",
+            "editor": "Editor",
+            "viewer": "Viewer"
+        },
+        "showPassword": "Show",
+        "hidePassword": "Hide"
+    },
+    "twoFactor": {
+        "title": "Two-Factor Authentication",
+        "setup": "Setup 2FA",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "enable": "Enable",
+        "disable": "Disable",
+        "type": "Method",
+        "typeApp": "Authenticator App",
+        "typeSms": "SMS",
+        "typeHardware": "Hardware Key",
+        "save": "Save",
+        "delete": "Remove 2FA",
+        "createdSuccessfully": "2FA enabled successfully!",
+        "updatedSuccessfully": "2FA updated successfully!",
+        "deletedSuccessfully": "2FA removed successfully!",
+        "notConfigured": "No 2FA configured for this credential",
+        "recoveryCodes": "Recovery Codes",
+        "addCode": "Add Code",
+        "generateCodes": "Generate Codes",
+        "noRecoveryCodes": "No recovery codes generated",
+        "codeUsed": "Used",
+        "codeAvailable": "Available",
+        "useCode": "Use",
+        "deleteCode": "Delete",
+        "codePlaceholder": "Enter recovery code",
+        "codeCreatedSuccessfully": "Recovery code added!",
+        "codeUsedSuccessfully": "Recovery code marked as used!",
+        "codeDeletedSuccessfully": "Recovery code deleted!"
+    },
+    "activityLog": {
+        "title": "Logs",
+        "empty": "No activity yet",
+        "actions": {
+            "created": "Access created",
+            "updated": "Access updated",
+            "deleted": "Access deleted",
+            "viewed": "Access viewed",
+            "copied": "Credentials copied",
+            "passwordChanged": "Password changed",
+            "recoveryCodeUsed": "Recovery code used",
+            "recoveryCodeViewed": "Recovery codes viewed",
+            "unknown": "Unknown action"
+        }
+    },
+    "search": {
+        "placeholder": "Search projects and credentials...",
+        "loading": "Loading...",
+        "empty": "No results found.",
+        "groups": {
+            "projects": "Projects",
+            "access": "Access Credentials"
+        }
+    },
+    "breadcrumbs": {
+        "home": "Home",
+        "projects": "Projects",
+        "createProject": "New Project",
+        "editProject": "Edit",
+        "contact": "Contacts",
+        "terms": "Terms & Conditions",
+        "policy": "Privacy Policy",
+        "settings": "Settings"
+    },
+    "settings": {
+        "title": "Settings",
+        "changePassword": "Change Password",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "save": "Save",
+        "passwordChanged": "Password changed successfully!",
+        "passwordsMismatch": "Passwords do not match",
+        "twoFactor": {
+            "title": "Two-Factor Authentication",
+            "description": "Add an extra layer of security to your account using an authenticator app.",
+            "notEnabled": "Two-factor authentication is not enabled. Enable it to protect your account.",
+            "enable": "Enable 2FA",
+            "scanQrCode": "Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)",
+            "manualEntry": "Or enter this secret manually:",
+            "enterCode": "Verification Code",
+            "codePlaceholder": "000000",
+            "verify": "Verify & Enable",
+            "enabledSuccess": "Two-factor authentication is now enabled!",
+            "backupCodesDescription": "Save these backup codes in a safe place. Each code can only be used once.",
+            "backupCodesWarning": "These codes will not be shown again. Make sure to save them now.",
+            "done": "Done",
+            "enabled": "Enabled",
+            "enabledDescription": "Your account is protected with two-factor authentication.",
+            "regenerateBackupCodes": "Regenerate Backup Codes",
+            "regenerateDescription": "Enter your TOTP code to generate new backup codes. This will invalidate all previous codes.",
+            "regenerate": "Regenerate",
+            "disable": "Disable 2FA",
+            "disableTitle": "Disable Two-Factor Authentication",
+            "disableDescription": "This will remove 2FA protection from your account. Enter your password to confirm.",
+            "confirmPassword": "Password",
+            "confirmDisable": "Disable 2FA"
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "Have a question, found a bug, or want to suggest a feature? We'd love to hear from you.",
+        "email": "Email",
+        "emailHint": "For general inquiries and support",
+        "githubHint": "Report bugs and request features",
+        "formTitle": "Send a Message",
+        "formDescription": "Fill out the form below and we'll get back to you as soon as possible.",
+        "subject": "Subject",
+        "subjectPlaceholder": "What is this about?",
+        "message": "Message",
+        "messagePlaceholder": "Describe your question or issue in detail...",
+        "send": "Send Message",
+        "sent": "Message sent! We'll get back to you soon."
     },
     "url": {
         "terms": "Terms & Conditions",
         "policy": "Privacy Policy",
         "contacts": "Contacts"
-    }
+    },
+    "filters": {
+        "allStatuses": "All Statuses",
+        "allEnvironments": "All Environments",
+        "allLevels": "All Levels",
+        "sortBy": "Sort by",
+        "asc": "Ascending",
+        "desc": "Descending",
+        "sortOptions": {
+            "updatedAt": "Last Updated",
+            "createdAt": "Date Created",
+            "name": "Name",
+            "serviceName": "Service Name"
+        }
+    },
+    "back": "Back"
 }

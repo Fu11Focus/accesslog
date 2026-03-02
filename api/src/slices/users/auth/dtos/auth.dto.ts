@@ -46,6 +46,9 @@ export class MeResponseDto {
 
     @ApiProperty()
     email: string;
+
+    @ApiProperty()
+    twoFactorEnabled: boolean;
 }
 
 export class MessageResponseDto {

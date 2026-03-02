@@ -24,7 +24,7 @@ services:
       - '6379:6379'
     volumes:
       - redis_data:/data
-    command: redis-server --appendonly yes
+    command: redis-server --appendonly yes --requirepass 8DK2f1mHNGLd9aOkns2bzQLc81
 
 volumes:
   postgres_data:

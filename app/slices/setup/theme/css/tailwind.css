@@ -50,6 +50,7 @@
   --color-brand-lighter: #537B73;
   --color-brand-text: #DAF7F2;
   --shadow-inner-brand: inset 0 0 40px rgba(83, 123, 115);
+  --shadow-inner-brand-input: inset 0 0 20px rgba(83, 123, 115, 0.3);
 }
 
 :root {
@@ -129,5 +130,7 @@
   body {
     background-color: #000;
     background-image: radial-gradient(ellipse at top, #336357 0%, #37524D 5%, transparent 50%);
+    scrollbar-width: thin;
+    scrollbar-color: #537B73 transparent;
   }
 }

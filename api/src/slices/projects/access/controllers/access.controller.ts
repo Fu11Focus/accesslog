@@ -1,10 +1,11 @@
 import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { AccessService } from "../domain/services/access.service";
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "#users/auth/guards";
 import { User } from "#users/auth/decorators";
 import { CreateAccessDto, UpdateAccessDto } from "../dtos";
 import { IAccess } from "../domain/interfaces";
+import { AccessQueryDto } from "../dtos/access-query.dto";
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
@@ -27,8 +28,13 @@ export class AccessController {
         description: 'Get access by project id',
         operationId: 'getAccessByProjectId'
     })
-    async getAccessByProjectId(@User() user, @Param('projectId') projectId: string) {
-        return this.accessService.getAccessByProjectId(projectId, user.encryptionKey);
+    async getAccessByProjectId(@User() user, @Param('projectId') projectId: string, @Query() query: AccessQueryDto) {
+        return this.accessService.getAccessByProjectId(projectId, user.encryptionKey, query.page, query.limit, {
+            environment: query.environment,
+            accessLevel: query.accessLevel,
+            sortBy: query.sortBy,
+            sortOrder: query.sortOrder,
+        });
     }
 
     @Get(':id')

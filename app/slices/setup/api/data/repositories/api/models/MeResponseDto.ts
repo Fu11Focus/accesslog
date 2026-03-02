@@ -5,5 +5,6 @@
 export type MeResponseDto = {
     id: string;
     email: string;
+    twoFactorEnabled: boolean;
 };
 

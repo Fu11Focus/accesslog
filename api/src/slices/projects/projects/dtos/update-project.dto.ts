@@ -15,7 +15,7 @@ export class UpdateProjectDto {
     @IsNotEmpty()
     clientName?: string;
 
-    @ApiProperty({ required: false })
+    @ApiProperty({ required: false, enum: ProjectStatus, enumName: 'ProjectStatus' })
     @IsOptional()
     @IsEnum(ProjectStatus)
     status?: ProjectStatus;

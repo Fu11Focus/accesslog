@@ -6,6 +6,11 @@ export interface ILoginResult {
     refreshToken: string;
 }
 
+export interface ITwoFactorLoginResult {
+    requiresTwoFactor: true;
+    sessionToken: string;
+}
+
 export interface IRefreshTokenResult {
     accessToken: string;
     refreshToken: string;

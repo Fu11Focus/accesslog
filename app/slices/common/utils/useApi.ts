@@ -12,9 +12,6 @@ export async function apiCall<T>(
         }
         return result;
     } catch (error) {
-        console.log('API Error:', error);
-        console.log('Is ApiError:', error instanceof ApiError);
-        
         if (error instanceof ApiError) {
             toast.error(error.body?.message || 'Something went wrong');
         } else {

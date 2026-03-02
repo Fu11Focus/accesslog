@@ -5,6 +5,10 @@ model User {
   encryptionSalt String
   plan           Plan   @default(FREE)
 
+  twoFactorSecret      String?
+  twoFactorEnabled     Boolean @default(false)
+  backupCodesEncrypted String?
+
   stripeCustomerId     String?
   stripeSubscriptionId String?
 

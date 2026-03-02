@@ -4,6 +4,16 @@ import { registerSlices } from './registerSlices';
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
+  typescript: {
+    tsConfig: {
+      include: [
+        '../slices/setup/**/*',
+        '../slices/common/**/*',
+        '../slices/auth/**/*',
+        '../slices/project/**/*',
+      ],
+    },
+  },
   runtimeConfig: {
     public: {
       apiBase: 'http://localhost:3333',

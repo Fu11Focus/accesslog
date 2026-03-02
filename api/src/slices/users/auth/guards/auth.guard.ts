@@ -42,8 +42,13 @@ export class AuthGuard implements CanActivate {
 
             payload.id = payload.sub;
 
+            if (!payload.encryptionKey) {
+                throw new UnauthorizedException('Session expired. Please log in again.');
+            }
+
             request['user'] = payload;
         } catch (error) {
+            if (error instanceof UnauthorizedException) throw error;
             throw new UnauthorizedException('Invalid or expired token');
         }
 

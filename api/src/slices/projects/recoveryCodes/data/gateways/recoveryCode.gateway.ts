@@ -42,6 +42,20 @@ export class RecoveryCodeGateway implements IRecoveryCodeGateway {
         return twoFactor?.accessId ?? null;
     }
 
+    async twoFactorBelongsToUser(twoFactorId: string, userId: string): Promise<boolean> {
+        const twoFactor = await this.prisma.twoFactor.findFirst({
+            where: { id: twoFactorId, access: { project: { userId } } },
+        });
+        return !!twoFactor;
+    }
+
+    async belongsToUser(id: string, userId: string): Promise<boolean> {
+        const code = await this.prisma.recoveryCode.findFirst({
+            where: { id, twoFactor: { access: { project: { userId } } } },
+        });
+        return !!code;
+    }
+
     private toRecord(record: any): IRecoveryCodeRecord {
         return {
             id: record.id,

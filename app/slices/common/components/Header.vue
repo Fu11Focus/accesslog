@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { UserIcon, SearchIcon, LogOutIcon } from 'lucide-vue-next';
+import { UserIcon, SearchIcon, LogOutIcon, SettingsIcon } from 'lucide-vue-next';
 import { useAuthStore } from '../../auth/stores/auth.store';
 import { paths } from '#common/paths';
 import { apiCall } from '../utils/useApi';
 
 const auth = useAuthStore();
+const searchOpen = ref(false);
 
 const handleLogout = async () => {
 await apiCall(
@@ -22,7 +23,7 @@ navigateTo(paths.login);
             </NuxtLink>
         </div>
         <div class="flex gap-2">
-            <Button>
+            <Button @click="searchOpen = true">
                 <SearchIcon class="text-brand-text"/>
             </Button>
             <DropdownMenu>
@@ -36,6 +37,10 @@ navigateTo(paths.login);
                         <UserIcon :size="16"/>
                         {{ auth?.user?.email }}
                     </DropdownMenuLabel>
+                    <DropdownMenuItem @select="navigateTo(paths.settings)">
+                        <SettingsIcon/>
+                        {{ $t('settings.title') }}
+                    </DropdownMenuItem>
                     <DropdownMenuItem @select="handleLogout">
                         <LogOutIcon/>
                         {{ $t('auth.logOut') }}
@@ -44,4 +49,5 @@ navigateTo(paths.login);
             </DropdownMenu>
         </div>
     </header>
+    <SearchProvider v-model:open="searchOpen" />
 </template>

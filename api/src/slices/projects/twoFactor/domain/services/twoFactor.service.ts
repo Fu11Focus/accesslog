@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
 import { ITwoFactorService } from "../interfaces/twoFactor.service.interface";
 import { ICreateTwoFactor, ITwoFactor, IUpdateTwoFactor } from "../interfaces";
 import { ITwoFactorGateway } from "../gateways/twoFactor.gateway";
@@ -10,15 +10,19 @@ export class TwoFactorService implements ITwoFactorService {
         private readonly gateway: ITwoFactorGateway,
     ) { }
 
-    async createTwoFactor(data: ICreateTwoFactor): Promise<ITwoFactor> {
-        const accessExists = await this.gateway.accessExists(data.accessId);
-        if (!accessExists) {
-            throw new NotFoundException('Access not found');
+    async createTwoFactor(data: ICreateTwoFactor, userId: string): Promise<ITwoFactor> {
+        const isOwner = await this.gateway.accessBelongsToUser(data.accessId, userId);
+        if (!isOwner) {
+            throw new ForbiddenException('Access not found');
         }
         return this.gateway.create(data);
     }
 
-    async getTwoFactorByAccessId(accessId: string): Promise<ITwoFactor> {
+    async getTwoFactorByAccessId(accessId: string, userId: string): Promise<ITwoFactor> {
+        const isOwner = await this.gateway.accessBelongsToUser(accessId, userId);
+        if (!isOwner) {
+            throw new ForbiddenException('Access not found');
+        }
         const result = await this.gateway.findByAccessId(accessId);
         if (!result) {
             throw new NotFoundException('Two-factor not found');
@@ -26,7 +30,11 @@ export class TwoFactorService implements ITwoFactorService {
         return result;
     }
 
-    async getTwoFactorById(id: string): Promise<ITwoFactor> {
+    async getTwoFactorById(id: string, userId: string): Promise<ITwoFactor> {
+        const isOwner = await this.gateway.belongsToUser(id, userId);
+        if (!isOwner) {
+            throw new ForbiddenException('Two-factor not found');
+        }
         const result = await this.gateway.findById(id);
         if (!result) {
             throw new NotFoundException('Two-factor not found');
@@ -34,11 +42,19 @@ export class TwoFactorService implements ITwoFactorService {
         return result;
     }
 
-    async updateTwoFactor(id: string, data: IUpdateTwoFactor): Promise<ITwoFactor> {
+    async updateTwoFactor(id: string, data: IUpdateTwoFactor, userId: string): Promise<ITwoFactor> {
+        const isOwner = await this.gateway.belongsToUser(id, userId);
+        if (!isOwner) {
+            throw new ForbiddenException('Two-factor not found');
+        }
         return this.gateway.update(id, data);
     }
 
-    async deleteTwoFactorById(id: string): Promise<void> {
+    async deleteTwoFactorById(id: string, userId: string): Promise<void> {
+        const isOwner = await this.gateway.belongsToUser(id, userId);
+        if (!isOwner) {
+            throw new ForbiddenException('Two-factor not found');
+        }
         return this.gateway.delete(id);
     }
 }

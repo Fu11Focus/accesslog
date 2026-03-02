@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { ProjectsService } from "../domain/services/projects.service";
 import { ApiBearerAuth, ApiBody, ApiTags } from "@nestjs/swagger";
 import { ApiOperation } from "@nestjs/swagger";
 import { CreateProjectDto, UpdateProjectDto } from "../dtos";
 import { IProject } from "../domain/interfaces";
 import { User } from "#users/auth/decorators";
+import { ProjectsQueryDto } from "../dtos/projects-query.dto";
 
 
 @Controller('projects')
@@ -42,8 +43,12 @@ export class ProjectsController {
         description: 'Get all projects',
         operationId: 'getAllProjects',
     })
-    async getAllProjects(@User() user): Promise<IProject[]> {
-        return this.service.getAllProjects(user.id);
+    async getAllProjects(@User() user, @Query() query: ProjectsQueryDto) {
+        return this.service.getAllProjects(user.id, query.page, query.limit, {
+            status: query.status,
+            sortBy: query.sortBy,
+            sortOrder: query.sortOrder,
+        });
     }
 
     @Get(':id')

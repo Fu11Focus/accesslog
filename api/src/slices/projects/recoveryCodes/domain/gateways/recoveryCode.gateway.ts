@@ -15,4 +15,6 @@ export abstract class IRecoveryCodeGateway {
     abstract markAsUsed(id: string): Promise<IRecoveryCodeRecord>;
     abstract delete(id: string): Promise<void>;
     abstract findAccessIdByTwoFactorId(twoFactorId: string): Promise<string | null>;
+    abstract twoFactorBelongsToUser(twoFactorId: string, userId: string): Promise<boolean>;
+    abstract belongsToUser(id: string, userId: string): Promise<boolean>;
 }

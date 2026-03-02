@@ -9,7 +9,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { EncryptionService } from "#shared/domain/services/encryption.service";
 import { RefreshTokenService } from "./domain/services/refresh-token.service";
 import { RedisModule } from "#shared/redis/redis.module";
-import { EncryptionKeyCacheService } from "./domain/services";
+import { EncryptionKeyCacheService, TwoFactorAuthService } from "./domain/services";
 
 @Module({
     imports: [
@@ -27,6 +27,7 @@ import { EncryptionKeyCacheService } from "./domain/services";
         AuthMapper,
         RefreshTokenService,
         EncryptionKeyCacheService,
+        TwoFactorAuthService,
         EncryptionService,
         {
             provide: APP_GUARD,

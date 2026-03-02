@@ -35,8 +35,17 @@ export class TwoFactorGateway implements ITwoFactorGateway {
         await this.prisma.twoFactor.delete({ where: { id } });
     }
 
-    async accessExists(accessId: string): Promise<boolean> {
-        const access = await this.prisma.access.findUnique({ where: { id: accessId } });
+    async accessBelongsToUser(accessId: string, userId: string): Promise<boolean> {
+        const access = await this.prisma.access.findFirst({
+            where: { id: accessId, project: { userId } },
+        });
         return !!access;
+    }
+
+    async belongsToUser(id: string, userId: string): Promise<boolean> {
+        const twoFactor = await this.prisma.twoFactor.findFirst({
+            where: { id, access: { project: { userId } } },
+        });
+        return !!twoFactor;
     }
 }

@@ -6,5 +6,6 @@ export abstract class ITwoFactorGateway {
     abstract findByAccessId(accessId: string): Promise<ITwoFactor | null>;
     abstract update(id: string, data: IUpdateTwoFactor): Promise<ITwoFactor>;
     abstract delete(id: string): Promise<void>;
-    abstract accessExists(accessId: string): Promise<boolean>;
+    abstract accessBelongsToUser(accessId: string, userId: string): Promise<boolean>;
+    abstract belongsToUser(id: string, userId: string): Promise<boolean>;
 }

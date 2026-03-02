@@ -1,9 +1,22 @@
 <template>
     <Header />
-    <div class="accesslog-text fixed top-40 text-9xl font-bold uppercase">
+    <div class="accesslog-text pointer-events-none fixed top-40 text-9xl font-bold uppercase">
         <FingerprintPatternIcon :size="600" class="text-brand-dark" />
     </div>
-    <main class="max-w-360 mx-auto h-[calc(100vh-120px)] p-5">
+    <main class="max-w-360 mx-auto h-[calc(100vh-120px)] p-5 overflow-y-scroll">
+        <Breadcrumb v-if="breadcrumbs.length" class="mb-4">
+            <BreadcrumbList>
+                <template v-for="(item, index) in breadcrumbs" :key="index">
+                    <BreadcrumbItem>
+                        <BreadcrumbLink v-if="item.to" as-child>
+                            <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+                        </BreadcrumbLink>
+                        <BreadcrumbPage v-else>{{ item.label }}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator v-if="index < breadcrumbs.length - 1" />
+                </template>
+            </BreadcrumbList>
+        </Breadcrumb>
         <slot />
     </main>
     <Footer class="max-w-360 mx-auto p-5 h-10"/>
@@ -14,7 +27,9 @@
 import 'vue-sonner/style.css';
 import { Toaster } from '#setup/theme/components/ui/sonner';
 import { FingerprintPatternIcon } from 'lucide-vue-next';
+import { useBreadcrumbs } from '../composables/useBreadcrumbs';
 
+const { breadcrumbs } = useBreadcrumbs();
 </script>
 
 <style>

@@ -2,10 +2,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { ProjectStatus } from './ProjectStatus';
 export type UpdateProjectDto = {
     name?: string;
     clientName?: string;
-    status?: string;
+    status?: ProjectStatus;
     description?: string;
 };
 

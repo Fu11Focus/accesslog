@@ -4,6 +4,7 @@ import { IProject } from "../interfaces";
 import { ICreateProject } from "../interfaces/createProject.interface";
 import { IUpdateProject } from "../interfaces/updateProject.interface";
 import { IProjectsGateway } from "../gateways/projects.gateway";
+import { IPaginatedResult } from "#shared/interfaces/paginated-result.interface";
 
 
 @Injectable()
@@ -33,7 +34,11 @@ export class ProjectsService implements IProjectsService {
         return project;
     }
 
-    async getAllProjects(userId: string): Promise<IProject[]> {
-        return this.gateway.findAllByUserId(userId);
+    async getAllProjects(userId: string, page: number, limit: number, filters?: { status?: string; sortBy?: string; sortOrder?: 'asc' | 'desc' }): Promise<IPaginatedResult<IProject>> {
+        const { data, total } = await this.gateway.findAllByUserId(userId, page, limit, filters);
+        return {
+            data,
+            meta: { total, page, limit, totalPages: Math.ceil(total / limit) },
+        };
     }
 }

@@ -2,12 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AccessEnvironment } from './AccessEnvironment';
+import type { AccessLevel } from './AccessLevel';
 export type UpdateAccessDto = {
     id: string;
     serviceName: string;
     serviceUrl: string;
-    environment: string;
-    accessLevel: string;
+    environment: AccessEnvironment;
+    accessLevel: AccessLevel;
     login: string;
     password: string;
     notes: string;

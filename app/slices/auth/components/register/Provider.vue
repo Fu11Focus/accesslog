@@ -38,7 +38,7 @@
                 <Button type="submit" asChild>
                     <NuxtLink :to="paths.login">{{ $t('auth.login') }}</NuxtLink>
                 </Button>
-                <div class="text-xs text-gray-500 font-normal text-center">
+                <div class="text-base text-gray-500 font-normal text-center">
                     By continuing, you acknowledge that you understand and agree to the Terms & Conditions and Privacy
                     Policy
                 </div>

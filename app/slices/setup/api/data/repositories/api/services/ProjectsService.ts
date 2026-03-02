@@ -26,13 +26,31 @@ export class ProjectsService {
     }
     /**
      * Get all projects
+     * @param page
+     * @param limit
+     * @param sortBy
+     * @param sortOrder
+     * @param status
      * @returns any
      * @throws ApiError
      */
-    public static getAllProjects(): CancelablePromise<any> {
+    public static getAllProjects(
+        page: number = 1,
+        limit: number = 10,
+        sortBy?: string,
+        sortOrder?: 'asc' | 'desc',
+        status?: 'ACTIVE' | 'ARCHIVED',
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/projects',
+            query: {
+                'page': page,
+                'limit': limit,
+                'sortBy': sortBy,
+                'sortOrder': sortOrder,
+                'status': status,
+            },
         });
     }
     /**

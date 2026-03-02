@@ -5,6 +5,7 @@ import { IAccessGateway, IAccessRecord } from "../gateways/access.gateway";
 import { EncryptionService } from "#shared/domain/services/encryption.service";
 import { IActivityLogGateway } from "#activityLog/domain/activityLog.gateway";
 import { ActionType } from "#activityLog/domain/interfaces/activityLog.interface";
+import { IPaginatedResult } from "#shared/interfaces/paginated-result.interface";
 
 
 @Injectable()
@@ -56,12 +57,16 @@ export class AccessService implements IAccessService {
         return { ...this.toData(result), password };
     }
 
-    async getAccessByProjectId(projectId: string, encryptionKey: string): Promise<IAccess[]> {
-        const results = await this.gateway.findByProjectId(projectId);
-        return results.map((record) => ({
+    async getAccessByProjectId(projectId: string, encryptionKey: string, page: number, limit: number, filters?: { environment?: string; accessLevel?: string; sortBy?: string; sortOrder?: 'asc' | 'desc' }): Promise<IPaginatedResult<IAccess>> {
+        const { data: records, total } = await this.gateway.findByProjectId(projectId, page, limit, filters);
+        const data = records.map((record) => ({
             ...this.toData(record),
             password: this.encryptionService.decrypt(record.passwordEncrypted, encryptionKey),
         }));
+        return {
+            data,
+            meta: { total, page, limit, totalPages: Math.ceil(total / limit) },
+        };
     }
 
     async getAccessById(id: string, encryptionKey: string): Promise<IAccess> {

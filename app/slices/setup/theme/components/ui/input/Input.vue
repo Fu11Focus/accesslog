@@ -22,5 +22,5 @@ const modelValue = useVModel(props, "modelValue", emits, {
 
 <template>
   <input v-model="modelValue" data-slot="input" :placeholder="placeholder"
-    class="bg-black/10 backdrop-blur-md border border-white/10 p-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/10">
+    class="bg-gray-400/10 backdrop-blur-lg border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/10 p-4 placeholder:text-white/60 shadow-inner-brand-input">
 </template>

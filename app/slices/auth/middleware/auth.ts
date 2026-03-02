@@ -1,13 +1,12 @@
 import { useAuthStore } from "../stores/auth.store";
-import {paths} from "#common/paths";
+import { paths } from "#common/paths";
 
 export default defineNuxtRouteMiddleware(() => {
-    if (import.meta.server) return; // пропускаємо на сервері
+    if (import.meta.server) return;
 
     const auth = useAuthStore();
-    
-    if (auth.isAuthenticated) return;
-    if (localStorage.getItem('accessToken')) return;
-    
-    return navigateTo(paths.login);
+
+    if (!auth.isAuthenticated) {
+        return navigateTo(paths.login);
+    }
 });

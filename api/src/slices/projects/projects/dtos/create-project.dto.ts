@@ -13,7 +13,7 @@ export class CreateProjectDto {
     @IsString()
     clientName?: string;
 
-    @ApiProperty({ enum: ProjectStatus })
+    @ApiProperty({ enum: ProjectStatus, enumName: 'ProjectStatus' })
     @IsEnum(ProjectStatus)
     status: ProjectStatus;
 

@@ -7,9 +7,10 @@ import { AccessModule } from './slices/projects/access/access.module';
 import { TwoFactorModule } from './slices/projects/twoFactor/twoFactor.module';
 import { RecoveryCodeModule } from './slices/projects/recoveryCodes/recoveryCode.module';
 import { ActivityLogModule } from './slices/activityLog/activityLog.module';
+import { DashboardModule } from './slices/dashboard/dashboard.module';
 
 @Module({
-  imports: [PrismaModule, UsersModule, AuthModule, ProjectsModule, AccessModule, TwoFactorModule, RecoveryCodeModule, ActivityLogModule],
+  imports: [PrismaModule, UsersModule, AuthModule, ProjectsModule, AccessModule, TwoFactorModule, RecoveryCodeModule, ActivityLogModule, DashboardModule],
   controllers: [],
   providers: [],
 })

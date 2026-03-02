@@ -2,16 +2,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { ProjectStatus } from './ProjectStatus';
 export type CreateProjectDto = {
     name: string;
     clientName?: string;
-    status: CreateProjectDto.status;
+    status: ProjectStatus;
     description?: string;
 };
-export namespace CreateProjectDto {
-    export enum status {
-        ACTIVE = 'ACTIVE',
-        ARCHIVED = 'ARCHIVED',
-    }
-}
 

@@ -26,7 +26,7 @@ export abstract class IAccessGateway {
         owner?: string;
     }): Promise<IAccessRecord>;
     abstract findById(id: string): Promise<IAccessRecord | null>;
-    abstract findByProjectId(projectId: string): Promise<IAccessRecord[]>;
+    abstract findByProjectId(projectId: string, page: number, limit: number, filters?: { environment?: string; accessLevel?: string; sortBy?: string; sortOrder?: 'asc' | 'desc' }): Promise<{ data: IAccessRecord[]; total: number }>;
     abstract update(id: string, data: Partial<Omit<IAccessRecord, 'id' | 'createdAt' | 'updatedAt'>>): Promise<IAccessRecord>;
     abstract delete(id: string): Promise<void>;
     abstract projectExists(projectId: string): Promise<boolean>;
